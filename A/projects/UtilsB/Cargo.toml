@@ -1,0 +1,10 @@
+[package]
+name = "UtilsB"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4.19"   # A date and time library for Rust
+serde = "1.0.130"   # A generic serialization/deserialization framework
+serde_json = "1.0.68"   # A JSON serialization file format
+serde_derive = "1.0.130"   # A procedural macro to derive Serialize and Deserialize implementations for data structures

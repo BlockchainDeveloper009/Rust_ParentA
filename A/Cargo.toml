@@ -1,0 +1,16 @@
+[package]
+name = "A"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+UtilsB = { path = "projects/UtilsB" }
+E = { path = "projects/E" }
+ApiServer = { path = "projects/ApiServer" }
+[workspace]
+members = [ "projects/ApiServer",
+    "projects/B",
+    "projects/CopyFiles",
+    "projects/DSA",
+    "projects/E"
+, "projects/UtilsB"]
