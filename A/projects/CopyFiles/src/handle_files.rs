@@ -1,6 +1,13 @@
+
 use std::fs;
 use std::io;
 use std::path::Path;
+use UtilsB::helpers::filehelper::{fhlprs_read_file}; 
+
+// use UtilsB::helpers::filehelper::{fhlprs_read_file};
+// import filehelper module from UtilsB library
+// pub mod helper;
+// use helper::read_file;
 
 /// Copies missing files from folder A to folder C, based on files present in folder B.
 ///
@@ -84,20 +91,25 @@ mod tests {
     }
 
     #[test]
-    fn test_copy_missing_files() {
+    fn test_copy_missing_files_paramsFile() {
         let folder_a = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\SirioFinance1";
         let folder_b = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\B";
         let folder_c = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\C";
+        //let param = read params.json;
+        // let param = get_params();
         match copy_missing_files(folder_a, folder_b, folder_c) {
             Ok(_) => println!("Missing files copied successfully."),
             Err(e) => eprintln!("Error during file copy: {}", e),
         }
     }
 }
-pub fn test_copy_missing_files() {
+pub fn test_copy_missing_utilHelper_file_read() {
     let folder_a = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\SirioFinance";
     let folder_b = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\B";
     let folder_c = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\C";
+
+    let param = fhlprs_read_file("src\\params.json");
+    println!("param: {:?}", param);
     match copy_missing_files(folder_a, folder_b, folder_c) {
         Ok(_) => println!("Missing files copied successfully."),
         Err(e) => eprintln!("Error during file copy: {}", e),

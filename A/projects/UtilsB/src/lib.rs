@@ -1,4 +1,7 @@
 pub mod log_mod;
+pub mod helpers;
+pub mod performance_helper;
+
 use log_mod::logger::write_log;
 
 pub fn add(left: u64, right: u64) -> u64 {

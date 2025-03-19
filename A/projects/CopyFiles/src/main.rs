@@ -1,19 +1,39 @@
+
+mod models;
+
+use crate::models::CopyFiles_Params_test::CopyFiles_Params_test;
+
 mod handle_files; // If not already declared
 use crate::handle_files::{copy_missing_files, get_files_in_folder};
 
+use UtilsB::log_mod::logger;
+use UtilsB::helpers::filehelper::{fhlprs_read_file};
+use serde::{Deserialize, Serialize};
 
 use std::io;
 use std::fs;
 fn main() {
     println!("Hello, from CopyFiles main.rs!");
+let fp = r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test.json";
+let file_content = fhlprs_read_file(fp).unwrap();
+
+ // Deserialize into CopyFiles_Params_test struct
+ let param_json = serde_json::from_str::<CopyFiles_Params_test>(&file_content).expect("Failed to parse JSON");
+
+println!("file_content: {}", param_json.sourceFolderA);
+    println!("Hello from the Utils library! {}", file_content );
 
     println!("Choose an operation:");
     println!("1. Database sample operation");
     println!("2. Copy missing files");
+    println!("_ or any key for exit");
 
     let mut input = String::new();
     io::stdin().read_line(&mut input);
     let choice = input.trim();
+
+
+
 
     match choice {
         "1" => {
@@ -37,7 +57,11 @@ fn main() {
                 Err(e) => eprintln!("Error during file copy: {}", e),
             }
         }
-        _ => println!("Invalid choice. Please choose either 1 or 2."),
+        _ => {
+            println!("=====================================");
+            println!("Thank you, You dint press valid entries 1 or 2, so program exits");
+            println!("=====================================");
+        }
     }
 
     //Ok(())

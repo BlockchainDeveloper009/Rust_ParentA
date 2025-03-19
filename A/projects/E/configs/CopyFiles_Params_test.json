@@ -1,0 +1,9 @@
+{
+    
+    "sourceFolderA" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Fin\\2024\\SirioFinance1",
+    "sourceFolderB" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Fin\\2024\\B",
+    "destinationFolder" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Fin\\2024\\C",
+    "generate_logs": "1",
+    "start_sequence": "1",
+    "end_sequence": "100"
+}
