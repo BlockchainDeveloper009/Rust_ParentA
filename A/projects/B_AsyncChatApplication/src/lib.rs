@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 pub mod utils;
 
+
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub enum Client{
     Join {
@@ -11,7 +12,7 @@ pub enum Client{
     Post {
         
         chat_name: Arc<String>,
-        message: Arc<String>,
+        message: Arc<String>, // Vid.105
     }
 
 }

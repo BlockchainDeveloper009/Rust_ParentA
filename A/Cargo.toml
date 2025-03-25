@@ -9,8 +9,8 @@ E = { path = "projects/E" }
 ApiServer = { path = "projects/ApiServer" }
 [workspace]
 members = [ "projects/ApiServer",
-    "projects/B",
+    "projects/B_AsyncChatApplication",
     "projects/CopyFiles",
     "projects/DSA",
     "projects/E"
-, "projects/UtilsB"]
+, "projects/UtilsB", "projects/wasm-game-of-life"]
