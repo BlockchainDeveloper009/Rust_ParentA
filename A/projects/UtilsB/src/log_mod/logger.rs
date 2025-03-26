@@ -9,7 +9,6 @@ mod tests {
 
     #[test]
     fn it_create_log() {
-        
         let result = write_log("unit test call from logger.rs file ");
         assert_eq!(result, ());
     }
@@ -27,7 +26,7 @@ pub fn write_log(message: &str) {
     }
 
     // Define log file path
-    let log_file_path = format!("{}/log_{}.log", log_dir, timestamp);
+    let log_file_path = format!("{}/{}/log_{}.log", log_dir, timestamp, timestamp);
 
     // Open or create log file
     let mut log_file = OpenOptions::new()

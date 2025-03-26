@@ -2,8 +2,8 @@ mod models;
 
 use crate::models::CopyFiles_Params_test::CopyFiles_Params_test;
 
-mod handle_files; // If not already declared
-use crate::handle_files::{copy_missing_files, get_files_in_folder};
+mod handle_files;
+use crate::handle_files::{copy_missing_files, get_files_in_folder, load_params_from_file};
 
 use serde::{Deserialize, Serialize};
 use UtilsB::helpers::filehelper::ut_fhlprs_read_file;
@@ -11,20 +11,17 @@ use UtilsB::log_mod::logger;
 
 use std::fs;
 use std::io;
+
 fn main() {
     println!("Hello, from CopyFiles main.rs!");
-    let fp = r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test.json";
-    let file_content = ut_fhlprs_read_file(fp).unwrap();
-
-    // Deserialize into CopyFiles_Params_test struct
-    let param_json =
-        serde_json::from_str::<CopyFiles_Params_test>(&file_content).expect("Failed to parse JSON");
+    let param_json = load_params_from_file(
+        r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test.json",
+    );
 
     println!(
         "file_content:  sourceFolderA==>  {}",
         param_json.sourceFolderA
     );
-    // println!("Hello from the Utils library! {}", file_content);
     println!("calling copy_missing_files--------");
     copy_missing_files(param_json).expect("Failed to copy missing file");
 

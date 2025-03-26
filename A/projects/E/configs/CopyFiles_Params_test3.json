@@ -1,8 +1,8 @@
 {
-    "SourceFoldersCount" : 1,
+    "SourceFoldersCount": 1,
     "sourceFolderA" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Camera Roll\\2023_july_and_later",
-    "sourceFolderB" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Camera Roll\\B",
-    "destinationFolder" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Camera Roll\\C",
+    "sourceFolderB" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Camera Roll\\D",
+    "destinationFolder" : "C:\\Users\\krtzx\\OneDrive\\Pictures\\Camera Roll\\E",
     "generate_logs": "1",
     "start_sequence": "1",
     "end_sequence": "100",

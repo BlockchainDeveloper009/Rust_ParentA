@@ -49,3 +49,11 @@ UtilsB - contains code to help
 
 ### Baiscs
 
+
+### Packages
+RUST ANALYSER
+clippy
+rustls - SSL LIBRARY - similar to openssl for RUST
+
+//PYTHON:
+UV+RUFF+PYRIGHT

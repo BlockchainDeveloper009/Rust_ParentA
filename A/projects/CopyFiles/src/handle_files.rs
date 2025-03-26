@@ -1,15 +1,10 @@
 use crate::models::CopyFiles_Params_test::CopyFiles_Params_test;
-
-//use crate::models::CopyFiles_Params_test;
 use std::fs;
 use std::io;
 use std::path::Path;
 use UtilsB::helpers::filehelper::{ut_fhlprs_read_file, ut_fhlprs_write_file, ut_flhprs_print};
 
-// use UtilsB::helpers::filehelper::{fhlprs_read_file};
 // import filehelper module from UtilsB library
-// pub mod helper;
-// use helper::read_file;
 
 /// Copies missing files from folder A to folder C, based on files present in folder B.
 ///
@@ -23,9 +18,9 @@ use UtilsB::helpers::filehelper::{ut_fhlprs_read_file, ut_fhlprs_write_file, ut_
 /// * `Err(io::Error)` if an error occurs.
 ///
 pub fn copy_missing_files(_CopyFiles_Params_test: CopyFiles_Params_test) -> io::Result<()> {
-    let mut folder_a: &String = &_CopyFiles_Params_test.sourceFolderA;
-    let mut folder_b: &String = &_CopyFiles_Params_test.sourceFolderB;
-    let mut folder_c: &String = &_CopyFiles_Params_test.destinationFolder;
+    let mut folder_a: &str = &_CopyFiles_Params_test.sourceFolderA;
+    let mut folder_b: &str = &_CopyFiles_Params_test.sourceFolderB;
+    let mut folder_c: &str = &_CopyFiles_Params_test.destinationFolder;
     println!("folder_c ==========>>>>>> {}", folder_c);
     // Create folder C if it doesn't exist
     fs::create_dir_all(folder_c)?;
@@ -35,6 +30,7 @@ pub fn copy_missing_files(_CopyFiles_Params_test: CopyFiles_Params_test) -> io::
     // Get list of files in folders A and B
     let files_in_a = get_files_in_folder(folder_a)?;
     let files_in_b = get_files_in_folder(folder_b)?;
+    let files_in_c = get_files_in_folder(folder_c)?;
 
     // Copy missing files from folder A to folder C
     for file in files_in_a {
@@ -47,6 +43,7 @@ pub fn copy_missing_files(_CopyFiles_Params_test: CopyFiles_Params_test) -> io::
             if (_CopyFiles_Params_test.copyFiles_flag) {
                 fs::copy(source_path, destination_path)?;
                 println!("Copied missing file: {}", file);
+                filesBeingCopied.push(source_path.display().to_string());
             } else {
                 //filesBeingCopied.push(&source_path);
                 filesBeingCopied.push(source_path.display().to_string());
@@ -64,6 +61,21 @@ pub fn copy_missing_files(_CopyFiles_Params_test: CopyFiles_Params_test) -> io::
     ut_fhlprs_write_file("Exists", &fileAlreadyExists.join(",\n"));
     //write your file aready existn
     Ok(())
+}
+
+/// Loads parameters from a JSON file and deserializes them into a `CopyFiles_Params_test` struct.
+///
+/// # Arguments
+/// * `file_path` - A string slice that holds the path to the JSON file.
+///
+/// # Returns
+/// * `CopyFiles_Params_test` struct containing the deserialized parameters.
+///
+/// # Panics
+/// * If the file cannot be read or the JSON cannot be parsed.
+pub fn load_params_from_file(file_path: &str) -> CopyFiles_Params_test {
+    let file_content = ut_fhlprs_read_file(file_path).unwrap();
+    serde_json::from_str::<CopyFiles_Params_test>(&file_content).expect("Failed to parse JSON")
 }
 
 /// Returns a list of file names in the specified folder.
@@ -127,27 +139,66 @@ mod tests {
     }
 
     #[test]
-    fn test_copy_missing_files_paramsFile() {
+    #[cfg(feature = "critical")]
+    fn test_1_direct_struct_hardcoded_values() {
         let folder_a = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\SirioFinance1";
         let folder_b = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\B";
         let folder_c = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\C";
+
+        let _directValuesTest = CopyFiles_Params_test {
+            sourceFolderA: String::from("C:/Users/krtzx/OneDrive/Pictures/Fin/2024/SirioFinance1"),
+            sourceFolderB: String::from("C:/Users/krtzx/OneDrive/Pictures/Fin/2024/B"),
+            destinationFolder: String::from("C:/Users/krtzx/OneDrive/Pictures/Fin/2024/C"),
+            copyFiles_flag: true,
+        };
+
         //let param = read params.json;
         // let param = get_params();
-        match copy_missing_files(folder_a, folder_b, folder_c) {
+        match copy_missing_files(_directValuesTest) {
             Ok(_) => println!("Missing files copied successfully."),
             Err(e) => eprintln!("Error during file copy: {}", e),
         }
     }
     #[test]
-    pub fn test_copy_missing_utilHelper_file_read() {
-        let folder_a = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\SirioFinance";
-        let folder_b = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\B";
-        let folder_c = r"C:\Users\krtzx\OneDrive\Pictures\Fin\2024\C";
+    #[cfg(feature = "critical")]
+    pub fn test_2_file1() {
         println!("----test1------");
-        let param = ut_fhlprs_read_file("params.json");
-        println!("-- {}", folder_b);
-        println!("param: {:?}", param);
-        match copy_missing_files(folder_a, folder_b, folder_c) {
+        let param_json = load_params_from_file(
+            r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test.json",
+        );
+
+        println!("param: {:?}", param_json);
+        match copy_missing_files(param_json) {
+            Ok(_) => println!("Missing files copied successfully."),
+            Err(e) => eprintln!("Error during file copy: {}", e),
+        }
+    }
+
+    #[test]
+    #[cfg(feature = "Integration")]
+    pub fn test_3_file2() {
+        println!("----test1------");
+        let param_json = load_params_from_file(
+            r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test2.json",
+        );
+
+        println!("param: {:?}", param_json);
+        match copy_missing_files(param_json) {
+            Ok(_) => println!("Missing files copied successfully."),
+            Err(e) => eprintln!("Error during file copy: {}", e),
+        }
+    }
+
+    #[test]
+    #[cfg(feature = "file3")]
+    pub fn test_4_file3() {
+        println!("----test1------");
+        let param_json = load_params_from_file(
+            r"C:\source\repos\Rust_ParentA\A\projects\E\configs\CopyFiles_Params_test3.json",
+        );
+
+        println!("param: {:?}", param_json);
+        match copy_missing_files(param_json) {
             Ok(_) => println!("Missing files copied successfully."),
             Err(e) => eprintln!("Error during file copy: {}", e),
         }
