@@ -10,7 +10,8 @@ serde_json = "1.0"
 #rexiv2 = "0.10"
 chrono = "0.4"
 walkdir = "2"
-
+tokio = { version = "1.0", features = ["full", "macros"] }
+tempfile = "3.3"                                           # For test temp directories
 
 #image = "0.25.5"
 #exif = "0.0.1"

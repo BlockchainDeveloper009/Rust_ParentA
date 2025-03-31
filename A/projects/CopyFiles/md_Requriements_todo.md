@@ -7,7 +7,23 @@
 // threads read this flat file & remove duplicates, 
 // remove few files
 
+Mar-28-2025.
 
+1. Copy handle file and make it to read all the folders &
+2. Assign a thread to a queue & (hashmap with vectors of files present in the folder).
+3. threads keep a track of files and copy them to merge destination folder under same directory name.
+
+group mp4 together | images together.
+
+
+do a train run
+validation of folder source file count should match with 
+merge folder, misc bucket
+
+x. source processed : source file path
+y. copied_successfully : copied to destination_file path
+z. duplicate file list.csv : first row file path
+a. unable to copy
 
 
 //searching data on stack is faster than heap
@@ -52,55 +68,55 @@ Rust Stack: walkdir (directory traversal), sha2 (hashing), druid (GUI) or clap (
 Why Simple: File I/O and hashing; no network or database needed.
 Revenue: $5/month for 100 users with auto-cleanup feature.
 Build Time: ~25-35 hours.
-2. Pomodoro Timer
+1. Pomodoro Timer
 Concept: A cross-platform app (CLI or GUI) for Pomodoro time management with customizable work/break intervals and stats.
 Rust Stack: chrono (timing), tui-rs (CLI UI) or egui (GUI), serde (config saving).
 Why Simple: Timer logic and basic UI; local storage only.
 Revenue: $3/month for 170 users with task logging.
 Build Time: ~20-30 hours.
-3. Text Snippet Manager
+1. Text Snippet Manager
 Concept: A lightweight tool to store and retrieve frequently used text snippets (e.g., code, emails) via hotkeys or search.
 Rust Stack: rusqlite (DB), druid (GUI), keyboard (hotkey support).
 Why Simple: Local DB and simple UI; no server.
 Revenue: $4/month for 125 users with clipboard integration.
 Build Time: ~30-40 hours.
-4. RSS Feed Reader
+1. RSS Feed Reader
 Concept: A CLI or web app to aggregate and display RSS feeds from user-provided URLs, with basic filtering.
 Rust Stack: reqwest (HTTP), rss (parsing), tui-rs (CLI) or yew (web).
 Why Simple: Fetch-and-display logic; minimal state.
 Revenue: $5/month for 100 users with offline caching.
 Build Time: ~25-35 hours.
-5. Simple Encryption Tool
+1. Simple Encryption Tool
 Concept: A desktop app to encrypt/decrypt files or text using a user-provided key, focusing on local use.
 Rust Stack: aes (encryption), druid (GUI), base64 (encoding).
 Why Simple: Basic crypto operations and file I/O; no networking.
 Revenue: $5/month for 100 users with batch processing.
 Build Time: ~20-30 hours.
-6. CPU/Memory Monitor
+1. CPU/Memory Monitor
 Concept: A CLI or GUI tool to display real-time CPU, memory, and disk usage with historical charts.
 Rust Stack: sysinfo (system stats), tui-rs (CLI) or egui (GUI), tokio (async updates).
 Why Simple: System calls and visualization; no external deps beyond OS.
 Revenue: $3/month for 170 users with alert thresholds.
 Build Time: ~25-35 hours.
-7. Random Name Generator
+1. Random Name Generator
 Concept: A web or CLI tool to generate random names (e.g., for characters, projects) with customizable patterns.
 Rust Stack: rand (randomization), actix-web (web) or clap (CLI), serde (config).
 Why Simple: Pure logic and output; no persistence needed.
 Revenue: $2/month for 250 users with exportable lists.
 Build Time: ~15-25 hours.
-8. Simple Chat Server
+1. Simple Chat Server
 Concept: A self-hosted, lightweight chat server for small groups (e.g., friends, teams) with text-only messaging.
 Rust Stack: tokio (async networking), serde (message handling), actix-web (optional web client).
 Why Simple: Basic TCP or WebSocket server; no heavy features.
 Revenue: $5/month for 100 users with hosted option.
 Build Time: ~30-40 hours.
-9. Audio File Converter
+1. Audio File Converter
 Concept: A desktop tool to convert audio files between formats (e.g., MP3 to WAV) with batch processing.
 Rust Stack: hound (WAV handling), ffmpeg bindings (conversions), druid (GUI).
 Why Simple: Wrapper around existing libs; local processing.
 Revenue: $5/month for 100 users with trimming feature.
 Build Time: ~25-35 hours.
-10. Daily Journal App
+1.  Daily Journal App
 Concept: A CLI or GUI app for writing and browsing daily journal entries, stored locally with basic search.
 Rust Stack: rusqlite (DB), tui-rs (CLI) or egui (GUI), chrono (dates).
 Why Simple: Local storage and CRUD; no sync complexity.

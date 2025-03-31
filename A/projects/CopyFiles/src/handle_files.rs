@@ -41,7 +41,7 @@ pub fn copy_missing_files(_CopyFiles_Params_test: CopyFiles_Params_test) -> io::
             // Copy file from folder A to folder C
 
             if (_CopyFiles_Params_test.copyFiles_flag) {
-                fs::copy(source_path, destination_path)?;
+                fs::copy(&source_path, &destination_path)?;
                 println!("Copied missing file: {}", file);
                 filesBeingCopied.push(source_path.display().to_string());
             } else {

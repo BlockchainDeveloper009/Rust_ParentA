@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CopyFiles_Params_test {
+    pub SourceFoldersCountPathFlag: bool,
     pub SourceFoldersCount: u8,
     pub sourceFolderA: String,
     pub sourceFolderB: String,
