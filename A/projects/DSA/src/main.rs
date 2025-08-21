@@ -46,4 +46,64 @@ fn main() {
 
 }
 
+fn vector_main() {
+    let mut numbers = Vec::new();
+    numbers.push(1);
+    numbers.push(2);
+    numbers.push(3);
+    println!("{:?}", numbers); // Output: [1, 2, 3]
+
+     let fruits = vec!["apple", "banana", "cherry"];
+    for fruit in &fruits {
+        println!("{}", fruit);
+    }
+
+        //Accessing elements
+
+    let names = vec!["Alice", "Bob", "Charlie"];
+    println!("First name: {}", names[0]); // Direct indexing
+    match names.get(2) {
+        Some(name) => println!("Third name: {}", name),
+        None => println!("No third name found"),
+    }
+
+    //Removing Elements:
+
+     let mut items = vec![10, 20, 30, 40];
+    items.remove(1); // Removes the element at index 1 (20)
+    println!("{:?}", items); // Output: [10, 30, 40]
+
+
+//Iterating & Modifying:
+
+
+    let mut scores = vec![10, 20, 30];
+    for score in &mut scores {
+        *score += 5;
+    }
+    println!("{:?}", scores); // Output: [15, 25, 35]
+
+
+    let mut nums = vec![1, 2, 3, 4, 5];
+nums.retain(|&x| x % 2 == 0); // Keeps only even numbers
+println!("{:?}", nums); // [2, 4]
+
+
+}
+
+struct Person {
+    name: String,
+    age: u32,
+}
+
+fn Vectors_with_strucs() {
+    let people = vec![
+        Person { name: "Alice".to_string(), age: 30 },
+        Person { name: "Bob".to_string(), age: 25 },
+    ];
+
+    for person in &people {
+        println!("{} is {} years old", person.name, person.age);
+    }
+}
 
