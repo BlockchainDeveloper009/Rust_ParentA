@@ -109,4 +109,30 @@ for window in data.windows(3) {
 
 ---
 
+---
+
+### 🧭 11. **Using `Some` and `Options<T>` and `Vec<Option<T>>`*
+Great for telling if a index has value or none value.
+```rust
+fn main() {
+    // Create a Vec where each slot can be Some(i32) or None
+    let mut vec: Vec<Option<i32>> = vec![None; 5];
+
+    // Assign values to some positions
+    vec[1] = Some(10);
+    vec[11] = Some(20);
+
+    // Check each index for a value
+    for (i, val) in vec.iter().enumerate() {
+        match val {
+            Some(num) => println!("Index {} has value: {}", i, num),
+            None => println!("Index {} is empty (None)", i),
+        }
+    }
+}
+
+```
+
+---
+
 If you're building performance-critical systems, these operations can be game-changers. Want to dive into how vectors interact with lifetimes, ownership, or unsafe code for even more control?
