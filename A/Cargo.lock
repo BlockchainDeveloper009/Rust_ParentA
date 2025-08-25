@@ -47,6 +47,8 @@ dependencies = [
  "rexif",
  "serde",
  "serde_json",
+ "tempfile",
+ "tokio",
  "walkdir",
 ]
 
